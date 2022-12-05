@@ -1,0 +1,263 @@
+.map-container {
+  height: 100vh;
+}
+.tooltip {
+  width: 222px;
+  height: 234px;
+  background-color: transparent;
+  .wallpaper-container {
+    width: 100%;
+    height: 105px;
+    position: relative;
+    .wallpaper {
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+    }
+    .favorite {
+      width: 26px;
+      height: 26px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(1px);
+      border-radius: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      bottom: 5px;
+      left: 5px;
+    }
+  }
+  .title {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 18px;
+    color: #2f2f2f;
+    padding-right: 6px;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .rating {
+    display: flex;
+    align-items: center;
+    padding-right: 6px;
+  }
+  .properties {
+    padding-right: 6px;
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    font-size: 8px;
+    line-height: 12px;
+    color: #adadad;
+    .tooltip-meterage,
+    .rooms,
+    .parking {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      width: fit-content;
+    }
+  }
+  .separator-line {
+    width: 151px;
+    height: 0px;
+    border: 0.5px solid #d7d7d7;
+    margin-top: 12px;
+    margin-right: 6px;
+  }
+  .price-and-call {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    padding-right: 6px;
+    .price {
+      display: flex;
+      flex-direction: column;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 18px;
+      color: #00b272;
+    }
+    .call {
+      background-color: transparent;
+      border: none;
+    }
+  }
+}
+
+.sidbar {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  .type-search-filter {
+    width: 320px;
+    height: 135px;
+    background-color: white;
+    border: 2px solid #ffffff;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    .type-filter {
+      width: 100%;
+      padding: 18px 0 24px 0;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+  }
+
+  .bedRooms {
+    width: 320px;
+    height: 110px;
+    background-color: white;
+    border: 2px solid #ffffff;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    .bedrooms-container {
+      width: 100%;
+      .bedrooms-items-container {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 21px;
+        .bedroom-item {
+          width: 60px;
+          height: 34px;
+          border: 1px solid #dedede;
+          border-radius: 12px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+        }
+        .active {
+          background-color: #717171;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+
+  .property-type {
+    width: 320px;
+    height: 105px;
+    background-color: white;
+    border: 2px solid #ffffff;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    .radio-input-container {
+      width: 100%;
+      .radio-input {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 21px;
+        .input-label {
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 24px;
+          color: #717171;
+        }
+        .input {
+          accent-color: #717171;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .price-card {
+    width: 320px;
+    height: 120px;
+    background-color: white;
+    border: 2px solid #ffffff;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    .range-conatiner {
+      width: 100%;
+      .range-slider {
+        margin: 0 21px;
+        .slider-input {
+          .rc-slider-track {
+            background-color: #717171;
+          }
+          .rc-slider-handle:active {
+            background-color: #717171;
+            border: solid 2px #717171;
+            opacity: 1;
+          }
+          .rc-slider-handle {
+            background-color: #717171;
+            border: solid 2px #717171;
+            opacity: 1;
+          }
+        }
+      }
+      .price-value {
+        display: flex;
+        justify-content: space-between;
+        margin: 12px 21px;
+      }
+    }
+  }
+
+  .meterage {
+    width: 320px;
+    height: 115px;
+    background-color: white;
+    border: 2px solid #ffffff;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    .meterage-container {
+      width: 100%;
+      .meterage-inputs {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 21px;
+        .meterage-text {
+          padding-right: 15px;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 24px;
+          color: #afafaf;
+        }
+      }
+    }
+  }
+}
+
+.mapboxgl-popup-content {
+  border-radius: 25px;
+  box-shadow: 0px 40px 40px rgba(0, 0, 0, 0.2);
+}
