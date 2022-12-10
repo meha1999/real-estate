@@ -1,0 +1,40 @@
+stages:
+  - build
+  - deploy
+before_script:
+  - temp_var=$CI_PROJECT_NAME
+  - result=$(echo $temp_var | sed "s/_/-/g")
+  - export result
+  - export
+  - echo $result
+  - CONTAINER_IMAGE=reg.fn/${CI_PROJECT_ROOT_NAMESPACE}/${result}:${CI_COMMIT_SHORT_SHA}
+
+
+
+build:
+  stage: build
+  
+  script:
+    
+    - export PROJECT_NAME
+    - echo ${result}
+    - echo ${CONTAINER_IMAGE}
+    
+    - docker login -u $HARBOR_USER -p $HARBOR_PASS reg.fn
+    - docker build -t ${CONTAINER_IMAGE} .
+    - docker tag ${CONTAINER_IMAGE} ${CONTAINER_IMAGE}
+    - docker tag ${CONTAINER_IMAGE} reg.fn/${CI_PROJECT_ROOT_NAMESPACE}/${result}:latest
+    - docker push ${CONTAINER_IMAGE}
+
+deploy:
+  stage: deploy
+
+  script:
+    - sed -i "s/<version>/${CI_COMMIT_SHORT_SHA}/g" deployment.yml
+    - sed -i "s/<projectname>/${result}/g" deployment.yml
+    - sed -i "s/<projectrootnamespace>/${CI_PROJECT_ROOT_NAMESPACE}/g" deployment.yml
+    - sed -i "s/<branch>/${CI_COMMIT_BRANCH}/g" deployment.yml
+    - sed -i "s/_/-/g" deployment.yml
+    - scp deployment.yml x@host:/tmp
+    - ssh x@host 'kubectl apply -f /tmp/deployment.yml'
+    - ssh x@host 'rm -rf /tmp/deployment.yml'

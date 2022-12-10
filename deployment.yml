@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    cattle.io/creator: m.salehi
+    workload.user.cattle.io/workloadselector: deployment-<projectname>-<branch>
+  name: <projectname>-<branch>
+  namespace: <projectrootnamespace>
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: deployment-<projectname>-<branch>
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        workload.user.cattle.io/workloadselector: deployment-<projectname>-<branch>
+    spec:
+      containers:
+      - image: reg.fn/<projectrootnamespace>/<projectname>:<version>
+        imagePullPolicy: Always
+        name: <projectname>
+        ports:
+        - containerPort: 3000
+          name: http
+          protocol: TCP
+        resources: {}
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities: {}
+          privileged: false
+          readOnlyRootFilesystem: false
+          runAsNonRoot: false
+        stdin: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        tty: true
+        #volumeMounts:
+        #- mountPath: /usr/share/nginx/html/upload
+        #  name: upload
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: salehi
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      #volumes:
+      #- name: upload
